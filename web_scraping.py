@@ -9,7 +9,10 @@ def run():
         print('mkdir {}'.format(target_folder))
         os.mkdir(target_folder)
 
-    for i in range(1, 5):
+    if not(target_folder.endswith('/')):
+        target_folder = target_folder + '/'
+
+    for i in range(1, 10):
         response = requests.get('https://xkcd.com/{}'.format(i))
         soup = BeautifulSoup(response.content, 'html.parser')
         image_container = soup.find(id='comic')
